@@ -1,0 +1,57 @@
+---
+
+- hosts: webservers
+  become: true
+  tasks: 
+
+
+    - name: installaing appache
+      yum: 
+        name: httpd
+        state: installed
+  
+    - name: starting appache server
+      service:
+        name: httpd
+        enabled: yes
+        state: started
+
+    - name: installing MYSQL DB
+      yum: 
+        name: 
+          - mariadb
+          - mariadb-server
+        state: installed
+
+    - name: starting MYSQL DB server
+      service: 
+        name: mariadb
+        enabled: yes
+        state: started
+
+    - name: installing php server
+      yum: 
+        name: 
+          - php-mysql
+          - php 
+        state: installed
+
+    - name: copy your php file in the /var/www/html
+      copy:
+        src: /etc/ansible/index.php
+        dest: /var/www/html/index.php
+
+    - name: resatrting httpd server
+      service: 
+        name: httpd
+        state: restarted 
+
+
+
+      
+
+
+        
+      
+        
+

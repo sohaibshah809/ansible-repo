@@ -1,0 +1,11 @@
+- name: installaing apache
+  yum:
+    name: httpd
+    state: installed
+
+- name: starting apache server
+  service:
+    name: httpd
+    enabled: yes
+    state: started
+  notify: start_apache      

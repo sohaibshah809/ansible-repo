@@ -1,0 +1,4 @@
+- name: start_mysql
+  service:
+    name: mariadb
+    state: start

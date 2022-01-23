@@ -1,0 +1,13 @@
+- name: installing MYSQL DB
+  yum:
+    name:
+      - mariadb
+      - mariadb-server
+    state: installed
+
+- name: starting MYSQL DB server
+  service:
+    name: mariadb
+    enabled: yes
+    state: started
+  notify: start_mysql    

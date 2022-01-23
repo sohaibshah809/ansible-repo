@@ -1,0 +1,10 @@
+- name: installing php server
+  yum:
+    name: php
+    state: installed
+
+- name: copy your php file in the /var/www/html
+  copy:
+    src: /etc/ansible/index.php
+    dest: /var/www/html/index.html
+  notify: restart_apache    

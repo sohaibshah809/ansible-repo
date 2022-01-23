@@ -1,0 +1,13 @@
+- name: start_apache
+  service: 
+    name: httpd
+    state: started
+#- name: start_apache
+#  service:
+#    name: mariadb
+#    state: started
+
+- name: restart_apache
+  service:
+    name: httpd
+    state: restarted

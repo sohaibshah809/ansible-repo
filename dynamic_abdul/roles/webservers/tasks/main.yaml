@@ -1,0 +1,54 @@
+
+---
+
+ - hosts: webservers
+   become: true 
+   tasks:
+
+    - name: Installing Apache
+      yum: 
+        name: httpd
+        state: installed
+     
+    - name: Enabling httpd service and start the service
+      service: 
+        name: httpd
+        enabled: yes
+        state: started
+
+    - name: Install MYSQL Community edition
+      yum:
+        name: mariadb
+        state: installed
+
+    - name: Install MYSQL DB Community edition
+      yum:
+        name: mariadb-server
+        state: installed
+
+    - name: Start the mariadb service
+      service:
+        name: mariadb
+        enabled: yes
+        state: started 
+
+
+    - name: Installing PHP
+      yum:
+        name: php 
+        state: installed
+
+    - name: Installing PHP
+      yum:
+        name: php-mysql 
+        state: installed
+
+    - name: Copying your php file in the /var/www/html
+      copy:
+        src: /etc/ansible/index.php
+        dest: /var/www/html/index.php
+
+    - name: Restarting Httpd Service
+      service:
+        name: httpd
+        state: restarted

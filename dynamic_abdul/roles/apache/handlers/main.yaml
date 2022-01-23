@@ -1,0 +1,4 @@
+- name: start_apache
+  yum:
+    name: httpd
+    state: started

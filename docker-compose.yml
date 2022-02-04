@@ -1,0 +1,24 @@
+version: '3'
+services:
+ # Nginx server configuration   
+  webserver:
+    image: nginx
+    container_name: webserver
+    links:
+      - dbserver
+    ports:
+      - "3000:80"
+
+
+# Mysql configuration
+  dbserver:
+    image: mysql:5.7
+    container_name: dbserver
+    restart: always
+    environment:
+        - MYSQL_DATABASE=docker_demo
+        - MYSQL_ROOT_PASSWORD=root123
+        - MYSQL_USER=shah
+        - MYSQL_PASSWORD=root123
+    ports:
+      - "8080:3306"
